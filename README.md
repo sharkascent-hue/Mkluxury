@@ -1,23 +1,23 @@
 # MK Luxury
 
-Instagram: [@mkluxurytr](https://www.instagram.com/mkluxurytr)
+Shop website for MK Luxury, with Instagram at [@mkluxurytr](https://www.instagram.com/mkluxurytr).
 
-A static shop website for MK Luxury in black, white and gold. It needs no build step: open `index.html` in a browser, or host it on GitHub Pages.
+It's a static site with no build step. Open `index.html` in a browser, or host it on GitHub Pages.
 
 ## Editing products
-All products and categories live in `js/products.js`.
+All products and categories are in `js/products.js`.
 
-- Put product photos in `images/products/` and add them to the product's `images` list.
-- `images` lists photos: the first is the cover, the second shows on hover, and all of them appear in the product gallery.
-- Leave `price: null` to show "Fiyat için DM" (Price via DM).
+- Put photos in `images/products/` and list them in the product's `images`. The first photo is the cover and the second shows on hover.
+- `colors` shows colour swatches. Give a colour an `image` index to switch to that photo when the colour is picked.
+- Swatch shades are set in `COLOR`. Add a new colour name there.
+- Leave `price: null` to show "Price on request".
+
+## Videos
+- `media/hero.mp4` / `.webm` is the main hero video. `media/hero-bg.*` is a small blurred copy used behind it on desktop.
+- `media/christmas.mp4` / `.webm` is the "Christmas Offer — Coming Soon" video.
 
 ## Publishing (GitHub Pages)
-1. In the repo, go to Settings → Pages.
-2. Set Source to "Deploy from a branch", choose `main` and `/ (root)`, then save.
-3. The site goes live at `https://<username>.github.io/mkluxury/`.
+In the repo, go to Settings → Pages. Set the source to "Deploy from a branch", choose `main` and `/ (root)`, then save. The site goes live at `https://<username>.github.io/mkluxury/`.
 
 ## Ordering
-The cart works in the browser. "Siparişi Tamamla" (Complete Order) copies an order summary to the clipboard and opens the Instagram profile, so the customer can paste the order into a DM.
-
-## Store video
-`media/magaza.mp4` is the video in the "Hikayemiz" (Our story) section, with `media/magaza.webm` as a fallback for browsers that can't play the MP4. To replace it, keep the same file names, or update the `<video>` sources in `index.html`.
+The bag works in the browser. "Order via Instagram" copies an order summary and opens the Instagram profile, so the customer can paste it into a message.

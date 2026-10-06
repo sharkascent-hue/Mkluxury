@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact Us — MK Luxury</title>
+  <meta name="description" content="MK Luxury — designer fashion in Kuşadası: Moncler, Canada Goose, Burberry, Louis Vuitton, Ralph Lauren and more. Best quality, best prices, delivery to the UK & Ireland.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='62%25' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='28' fill='%23d4af37'%3EMK%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page" data-page="contact">
+
+  <main>
+    <section class="banner">
+      <div class="container center">
+        <p class="kicker">Contact Us</p>
+        <h1 class="title">We'd love to <em>hear from you</em></h1>
+        <p class="lead">Questions about sizes, stock or delivery? Message us any time — or come and visit the store in Kuşadası.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="c-card reveal"><svg viewBox="0 0 32 32"><path d="M16 29s-9-8.2-9-15a9 9 0 0 1 18 0c0 6.8-9 15-9 15z"/><circle cx="16" cy="14" r="3.5"/></svg><h3>Visit the Store</h3><div id="visit"></div></div>
+          <div class="c-card reveal"><svg viewBox="0 0 32 32"><path d="M5 7h22v15H12l-7 5z"/></svg><h3>Talk to Us</h3><div id="talk"></div></div>
+          <div class="c-card reveal"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg><h3>Opening Hours</h3><div id="hours"></div></div>
+        </div>
+        <div class="map reveal" id="map"></div>
+      </div>
+    </section>
+    <section class="section" style="padding-top:0" id="delivery">
+      <div class="container split" style="align-items:start">
+        <div class="split__text">
+          <p class="kicker reveal">Delivery</p>
+          <h2 class="title reveal">Delivering to the <em>UK &amp; Ireland</em></h2>
+          <p class="reveal">Add what you love to your basket and send us your order. We'll confirm the price, your size, the delivery cost and timing in the chat before anything is paid.</p>
+          <p class="reveal">Shopping in Kuşadası? Pop into the store and take it home the same day.</p>
+        </div>
+        <form class="form reveal" id="contactForm">
+          <label>Your name<input name="name" required autocomplete="name"></label>
+          <label>Message<textarea name="message" required placeholder="Hi, do you have the Moncler jacket in size M?"></textarea></label>
+          <button class="btn btn--gold" type="submit"><span>Send Message</span></button>
+          <p class="count" id="formNote" style="text-transform:none;letter-spacing:.02em"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

@@ -2,284 +2,137 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MK Luxury — Winter Collection</title>
-  <meta name="description" content="MK Luxury: puffer jackets, parkas, knitwear, hoodies, tracksuits and sneakers. Visit our store or order via Instagram @mkluxurytr.">
-  <meta name="theme-color" content="#0b0b0b">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0b'/%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%23c9a54a'%3EMK%3C/text%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MK Luxury — Best Quality, Best Prices</title>
+  <meta name="description" content="MK Luxury — designer fashion in Kuşadası: Moncler, Canada Goose, Burberry, Louis Vuitton, Ralph Lauren and more. Best quality, best prices, delivery to the UK & Ireland.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='62%25' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='28' fill='%23d4af37'%3EMK%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="is-loading">
+<body class="page-home" data-page="home">
 
-  <!-- intro -->
-  <div class="intro" id="intro" aria-hidden="true">
-    <div class="intro__logo">
-      <span class="intro__mk">MK</span>
-      <span class="intro__lux">LUXURY</span>
-    </div>
-  </div>
-
-  <!-- announcement -->
-  <div class="announce">
-    <a href="#christmas">Christmas Offer — Coming Soon <span>Discover</span></a>
-  </div>
-
-  <!-- header -->
-  <header class="header" id="header">
-    <div class="header__inner">
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
-      <nav class="nav nav--left" aria-label="Main">
-        <a href="#shop">Shop</a>
-        <a href="#categories">Categories</a>
-        <a href="#christmas">Christmas</a>
-        <a href="#store">Our Store</a>
-      </nav>
-      <a href="#top" class="logo" aria-label="MK Luxury home">
-        <span class="logo__mk">MK</span>
-        <span class="logo__lux">LUXURY</span>
-      </a>
-      <div class="nav nav--right">
-        <button class="icon-btn" id="searchBtn" aria-label="Search">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
-        </button>
-        <button class="icon-btn" id="wishBtn" aria-label="Wishlist">
-          <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
-          <span class="badge" id="wishCount">0</span>
-        </button>
-        <button class="icon-btn" id="cartBtn" aria-label="Shopping bag">
-          <svg viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12h-11z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
-          <span class="badge" id="cartCount">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <nav>
-      <a href="#shop">Shop</a>
-      <a href="#categories">Categories</a>
-      <a href="#christmas">Christmas Offer</a>
-      <a href="#store">Our Store</a>
-    </nav>
-    <a class="mobile-menu__ig" href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener">Instagram — @mkluxurytr</a>
-  </div>
-
-  <!-- search -->
-  <div class="search" id="search" role="dialog" aria-label="Search products">
-    <button class="search__close" id="searchClose" aria-label="Close">&times;</button>
-    <div class="search__box">
-      <input type="search" id="searchInput" placeholder="Search the collection" autocomplete="off">
-      <div class="search__results" id="searchResults"></div>
-    </div>
-  </div>
-
-  <main id="top">
-
-    <!-- ============ HERO ============ -->
+  <main>
     <section class="hero">
       <video class="hero__bg" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg" aria-hidden="true">
         <source src="media/hero-bg.mp4" type="video/mp4">
         <source src="media/hero-bg.webm" type="video/webm">
       </video>
       <div class="hero__shade"></div>
-
       <div class="hero__inner">
         <div class="hero__text">
-          <p class="kicker hero__kicker">Winter Collection 2026</p>
+          <p class="kicker hero__kicker">Designer Fashion · Kuşadası</p>
           <h1 class="hero__title">
-            <span class="line"><span>The Winter</span></span>
-            <span class="line"><span><em>Edit</em></span></span>
+            <span class="ln"><span>Best Quality.</span></span>
+            <span class="ln"><span><em class="gold">Best Prices.</em></span></span>
           </h1>
-          <p class="hero__sub">Premium down jackets, knitwear and sneakers — chosen in our store, delivered to your door.</p>
+          <p class="hero__sub">Moncler, Canada Goose, Burberry, Louis Vuitton and more — hand-picked for every season and delivered to the UK &amp; Ireland.</p>
           <div class="hero__cta">
-            <a href="#shop" class="btn btn--light"><span>Shop the Collection</span></a>
-            <a href="#christmas" class="btn btn--outline"><span>Christmas Offer</span></a>
+            <a href="shop.html" class="btn btn--gold"><span>Shop Now</span></a>
+            <a href="christmas.html" class="btn btn--glow"><span>Christmas Deal</span><span class="tag">Soon</span></a>
+          </div>
+          <div class="hero__stats">
+            <div><strong>8+ Brands</strong>Top designers</div>
+            <div><strong>UK &amp; Ireland</strong>Delivery</div>
+            <div><strong>Kuşadası</strong>Our store</div>
           </div>
         </div>
-
         <div class="hero__frame">
           <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg">
             <source src="media/hero.mp4" type="video/mp4">
             <source src="media/hero.webm" type="video/webm">
           </video>
-          <button class="sound" data-sound="heroVideo" aria-label="Turn sound on">
-            <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="off" d="M16 9.5l5 5M21 9.5l-5 5"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
-          </button>
+          <button class="sound" data-sound="heroVideo"></button>
         </div>
       </div>
-
-      <a href="#categories" class="hero__scroll" aria-label="Scroll down"><i></i></a>
     </section>
 
-    <!-- ============ CATEGORIES ============ -->
-    <section class="section categories" id="categories">
+    <div class="marquee" id="marquee" aria-label="Our brands"></div>
+
+    <section class="section">
       <div class="container">
-        <div class="head reveal">
-          <p class="kicker">Shop by Category</p>
-          <h2 class="title">Find your <em>piece</em></h2>
+        <div class="head head--row reveal">
+          <div><p class="kicker">Shop by Category</p><h2 class="title">Find your <em>style</em></h2></div>
+          <a class="link" href="shop.html">View all</a>
         </div>
         <div class="cat-grid" id="catGrid"></div>
       </div>
     </section>
 
-    <!-- ============ PRODUCTS ============ -->
-    <section class="section shop" id="shop">
+    <section class="section" style="padding-top:0">
       <div class="container">
         <div class="head head--row reveal">
-          <div>
-            <p class="kicker">New Arrivals</p>
-            <h2 class="title">The <em>Collection</em></h2>
-          </div>
-          <div class="filters" id="filters" role="tablist"></div>
+          <div><p class="kicker">Trending Now</p><h2 class="title">Customer <em>favourites</em></h2></div>
+          <a class="link" href="shop.html">Shop everything</a>
         </div>
-        <div class="product-grid" id="productGrid"></div>
+        <div class="grid" id="featured"></div>
       </div>
     </section>
 
-    <!-- ============ CHRISTMAS ============ -->
-    <section class="section xmas" id="christmas">
-      <canvas class="xmas__snow" id="snow" aria-hidden="true"></canvas>
-      <div class="container xmas__inner">
-        <div class="xmas__frame reveal">
-          <video id="xmasVideo" muted loop playsinline preload="none" poster="media/christmas-poster.jpg" aria-label="MK Luxury Christmas video">
-            <source src="media/christmas.mp4" type="video/mp4">
-            <source src="media/christmas.webm" type="video/webm">
-          </video>
-          <button class="sound" data-sound="xmasVideo" aria-label="Turn sound on">
-            <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="off" d="M16 9.5l5 5M21 9.5l-5 5"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
-          </button>
-        </div>
-        <div class="xmas__text">
-          <p class="kicker reveal">Coming Soon</p>
-          <h2 class="title reveal">The Christmas <em>Offer</em></h2>
-          <p class="reveal">Something special is arriving at MK Luxury this festive season. Follow us on Instagram to be the first to hear when our Christmas offer goes live.</p>
-          <div class="countdown reveal" id="countdown" aria-label="Countdown to Christmas">
-            <div><strong data-cd="d">00</strong><span>Days</span></div>
-            <div><strong data-cd="h">00</strong><span>Hours</span></div>
-            <div><strong data-cd="m">00</strong><span>Minutes</span></div>
-            <div><strong data-cd="s">00</strong><span>Seconds</span></div>
-          </div>
-          <p class="countdown__note reveal">until Christmas Day</p>
-          <a class="btn btn--gold reveal" href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener"><span>Get Notified on Instagram</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ STORE ============ -->
-    <section class="store" id="store">
-      <div class="store__media reveal">
-        <img src="images/products/mont-4renk-magaza.jpg" alt="Jackets on the rail at the MK Luxury store" loading="lazy">
-      </div>
-      <div class="store__text">
-        <p class="kicker reveal">Our Store</p>
-        <h2 class="title reveal">Made for the <em>cold</em>, styled for the city</h2>
-        <p class="reveal">At MK Luxury every piece is hand-picked, from down jackets and parkas to knitwear, tracksuits and sneakers. Come and try the collection in store, or message us on Instagram and we'll help you find your size and colour.</p>
-        <a class="link-arrow reveal" href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener">Message us on Instagram</a>
-      </div>
-    </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section class="services">
-      <div class="container services__grid">
-        <div class="service reveal">
-          <svg viewBox="0 0 32 32"><path d="M4 12l3-7h18l3 7"/><path d="M4 12c0 2 1.7 3.5 4 3.5S12 14 12 12c0 2 1.8 3.5 4 3.5s4-1.5 4-3.5c0 2 1.7 3.5 4 3.5s4-1.5 4-3.5"/><path d="M6 15.5V27h20V15.5"/><path d="M13 27v-7h6v7"/></svg>
-          <h3>Visit Our Store</h3>
-          <p>See and try every piece in person.</p>
-        </div>
-        <div class="service reveal">
-          <svg viewBox="0 0 32 32"><path d="M3 9h17v13H3z"/><path d="M20 13h5l4 5v4h-9"/><circle cx="8" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/></svg>
-          <h3>Delivery Across Turkey</h3>
-          <p>Your order sent straight to your door.</p>
-        </div>
-        <div class="service reveal">
-          <svg viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="6"/><circle cx="16" cy="16" r="5"/><circle cx="22.5" cy="9.5" r="1"/></svg>
-          <h3>Order via Instagram</h3>
-          <p>Fill your bag and send it in one message.</p>
-        </div>
-        <div class="service reveal">
-          <svg viewBox="0 0 32 32"><path d="M16 4l3.5 7.5L28 12.6l-6 5.8 1.5 8.4L16 22.8 8.5 26.8 10 18.4l-6-5.8 8.5-1.1z"/></svg>
-          <h3>Personal Styling</h3>
-          <p>Ask us about sizes, colours and fit.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ INSTAGRAM ============ -->
-    <section class="section insta">
+    <section class="section" style="padding-top:0">
       <div class="container">
-        <div class="head head--center reveal">
-          <p class="kicker">Follow Us</p>
-          <h2 class="title"><a href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener">@mkluxurytr</a></h2>
-        </div>
-        <div class="insta-grid" id="instaGrid"></div>
+        <a class="offer reveal" href="christmas.html">
+          <div class="offer__media"><img src="media/christmas-poster.jpg" alt="Inside the MK Luxury store" loading="lazy"></div>
+          <div class="offer__text">
+            <p class="kicker">Coming Soon</p>
+            <h2 class="title">The Christmas <em>Deal</em></h2>
+            <p>Something special is landing at MK Luxury for the festive season. Be first in line — see what's coming.</p>
+            <div class="mini-count" id="miniCount">
+              <div><strong data-cd="d">00</strong><span>Days</span></div>
+              <div><strong data-cd="h">00</strong><span>Hours</span></div>
+              <div><strong data-cd="m">00</strong><span>Mins</span></div>
+              <div><strong data-cd="s">00</strong><span>Secs</span></div>
+            </div>
+            <span class="btn btn--gold"><span>See the Deal</span></span>
+          </div>
+        </a>
       </div>
     </section>
 
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="head head--row reveal">
+          <div><p class="kicker">Our Brands</p><h2 class="title">The names you <em>love</em></h2></div>
+          <a class="link" href="brands.html">All brands</a>
+        </div>
+        <div class="brand-grid" id="brandGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container perks">
+        <div class="perk reveal"><svg viewBox="0 0 32 32"><path d="M16 4l3.5 7.5L28 12.6l-6 5.8 1.5 8.4L16 22.8 8.5 26.8 10 18.4l-6-5.8 8.5-1.1z"/></svg><h3>Best Quality</h3><p>Every piece checked by hand in our store.</p></div>
+        <div class="perk reveal"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M19.5 11.5c-.8-1-2-1.5-3.5-1.5-2.2 0-3.8 1.2-3.8 3 0 4 7.6 2 7.6 6 0 1.8-1.7 3-3.8 3-1.6 0-3-.6-3.8-1.7M16 8v2M16 22v2"/></svg><h3>Best Prices</h3><p>Designer style without the designer markup.</p></div>
+        <div class="perk reveal"><svg viewBox="0 0 32 32"><path d="M3 9h17v13H3z"/><path d="M20 13h5l4 5v4h-9"/><circle cx="8" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/></svg><h3>UK &amp; Ireland</h3><p>We deliver straight to your door.</p></div>
+        <div class="perk reveal"><svg viewBox="0 0 32 32"><path d="M16 29s-9-8.2-9-15a9 9 0 0 1 18 0c0 6.8-9 15-9 15z"/><circle cx="16" cy="14" r="3.5"/></svg><h3>Visit Kuşadası</h3><p>Try the collection in our store.</p></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container split">
+        <div class="split__media reveal"><img src="images/products/mont-4renk-magaza.jpg" alt="The MK Luxury store wall" loading="lazy"></div>
+        <div class="split__text">
+          <p class="kicker reveal">About MK Luxury</p>
+          <h2 class="title reveal">Luxury fashion, <em>made accessible</em></h2>
+          <p class="reveal">From our store in Kuşadası we bring together the world's most wanted brands — down jackets, knitwear, tracksuits, sneakers and more, refreshed every season.</p>
+          <p class="reveal">Shop in person, or order online and we'll deliver to the UK and Ireland.</p>
+          <a class="link reveal" href="about.html">Our story</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="head center reveal"><p class="kicker">Follow Us</p><h2 class="title"><a href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener" class="gold">@mkluxurytr</a></h2></div>
+        <div class="insta-grid reveal" id="instaGrid"></div>
+      </div>
+    </section>
   </main>
 
-  <!-- footer -->
-  <footer class="footer">
-    <div class="container footer__grid">
-      <div class="footer__brand">
-        <a href="#top" class="logo logo--footer"><span class="logo__mk">MK</span><span class="logo__lux">LUXURY</span></a>
-        <p>Down jackets, knitwear, tracksuits and sneakers.</p>
-      </div>
-      <div>
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#shop">New Arrivals</a></li>
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#christmas">Christmas Offer</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Help</h4>
-        <ul>
-          <li><a href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener">Sizes &amp; Availability</a></li>
-          <li><a href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener">Delivery</a></li>
-          <li><a href="#store">Our Store</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener">Instagram @mkluxurytr</a></li>
-          <li>Turkey</li>
-        </ul>
-      </div>
-    </div>
-    <div class="container footer__bottom">
-      <p>© <span id="year"></span> MK Luxury. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- bag -->
-  <div class="overlay" id="overlay"></div>
-  <aside class="drawer" id="drawer" aria-label="Shopping bag">
-    <div class="drawer__head">
-      <h3>Your Bag</h3>
-      <button class="drawer__close" id="drawerClose" aria-label="Close">&times;</button>
-    </div>
-    <div class="drawer__body" id="cartItems"></div>
-    <div class="drawer__foot">
-      <div class="drawer__total"><span>Total</span><strong id="cartTotal">₺0</strong></div>
-      <a class="btn btn--dark btn--block" id="checkoutBtn" href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener"><span>Order via Instagram</span></a>
-      <p class="drawer__note">Your order summary is copied — just paste it into our Instagram messages.</p>
-    </div>
-  </aside>
-
-  <!-- product modal -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Product details">
-    <div class="modal__card" id="modalCard"></div>
-  </div>
-
-  <div class="toast" id="toast" role="status"></div>
-
+  <script src="js/config.js"></script>
   <script src="js/products.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

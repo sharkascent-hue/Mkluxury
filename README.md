@@ -1,23 +1,33 @@
 # MK Luxury
 
-Shop website for MK Luxury, with Instagram at [@mkluxurytr](https://www.instagram.com/mkluxurytr).
+Designer fashion store in Kuşadası, on Instagram at [@mkluxurytr](https://www.instagram.com/mkluxurytr).
 
-It's a static site with no build step. Open `index.html` in a browser, or host it on GitHub Pages.
+It's a static website with no build step, deployed on Vercel from `main`.
 
-## Editing products
-All products and categories are in `js/products.js`.
+## Pages
+| File | Page |
+|---|---|
+| `index.html` | Home |
+| `shop.html` | Shop. Filter with `?cat=puffers` or `?brand=moncler` |
+| `product.html?id=N` | Product page with brand, colours, sizes and add to basket |
+| `brands.html` | All brands |
+| `christmas.html` | The current offer (Christmas Deal) |
+| `about.html` | About Us |
+| `contact.html` | Contact Us, map and delivery info |
 
-- Put photos in `images/products/` and list them in the product's `images`. The first photo is the cover and the second shows on hover.
-- `colors` shows colour swatches. Give a colour an `image` index to switch to that photo when the colour is picked.
-- Swatch shades are set in `COLOR`. Add a new colour name there.
+The header, menu, search, basket and footer are added to every page by `js/site.js`.
+
+## Store details (`js/config.js`)
+Address, phone, WhatsApp, email, opening hours, the delivery area and the current offer all live here. Anything left empty is hidden. Once you add a WhatsApp number, the basket gets an "Order on WhatsApp" button that sends the full order.
+
+## Products (`js/products.js`)
+- `BRANDS`, `CATEGORIES` and `PRODUCTS` are all in this file.
+- Put photos in `images/products/` and list them in the product's `images`.
+- `colors` lists the swatches. Give a colour `image: N` to switch to that photo when the colour is picked.
+- `sizes` is `"clothing"` (XS–XXL), `"shoes"` (EU 39–45) or your own list.
 - Leave `price: null` to show "Price on request".
+- Set `featured: true` to show a product on the home page.
 
-## Videos
-- `media/hero.mp4` / `.webm` is the main hero video. `media/hero-bg.*` is a small blurred copy used behind it on desktop.
-- `media/christmas.mp4` / `.webm` is the "Christmas Offer — Coming Soon" video.
-
-## Publishing (GitHub Pages)
-In the repo, go to Settings → Pages. Set the source to "Deploy from a branch", choose `main` and `/ (root)`, then save. The site goes live at `https://<username>.github.io/mkluxury/`.
-
-## Ordering
-The bag works in the browser. "Order via Instagram" copies an order summary and opens the Instagram profile, so the customer can paste it into a message.
+## Videos (`media/`)
+- `hero.*` is the home hero video. `hero-bg.*` is a small blurred copy used behind it on desktop.
+- `christmas.*` is the offer page video.

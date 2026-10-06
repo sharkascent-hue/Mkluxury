@@ -279,7 +279,14 @@
   }
 
   function renderProducts() {
-    const list = PRODUCTS.filter(p => activeFilter === "all" || p.category === activeFilter);
+    let list = PRODUCTS.filter(p => activeFilter === "all" || p.category === activeFilter);
+    if (activeFilter === "all") {
+      // mix categories so the first rows show the whole range
+      const groups = CATEGORIES.map(c => list.filter(p => p.category === c.id));
+      const mixed = [];
+      for (let i = 0; mixed.length < list.length; i++) groups.forEach(g => g[i] && mixed.push(g[i]));
+      list = mixed;
+    }
     grid.innerHTML = list.map(cardHTML).join("");
     $$(".card", grid).forEach((c, i) => {
       c.style.transitionDelay = `${(i % 4) * 0.08}s`;
@@ -457,7 +464,12 @@
       $$("[data-thumb]", modalCard).forEach(b => b.classList.toggle("is-active", b === thumb));
     }
     const sw = e.target.closest("[data-color]");
-    if (sw) $$("[data-color]", modalCard).forEach(b => { b.classList.toggle("is-active", b === sw); b.setAttribute("aria-checked", b === sw); });
+    if (sw) {
+      $$("[data-color]", modalCard).forEach(b => { b.classList.toggle("is-active", b === sw); b.setAttribute("aria-checked", b === sw); });
+      const p = PRODUCTS.find(x => x.id === modalProduct);
+      const idx = p.colors.indexOf(sw.dataset.color);
+      if (p.colorImages && p.images[idx]) $(`[data-thumb="${idx}"]`, modalCard)?.click();
+    }
     if (add) {
       const color = ($(".swatch.is-active", modalCard) || {}).dataset?.color;
       addToCart(+add.dataset.modalAdd, color); closeModal(); setTimeout(openDrawer, 300);
@@ -559,6 +571,23 @@
     toastTimer = setTimeout(() => toastEl.classList.remove("is-show"), 2600);
   }
   function bump(el) { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
+
+  /* store video: play only while visible, sound toggle */
+  const video = $("#storeVideo"), soundBtn = $("#videoSound");
+  if (video) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (video.preload === "none") video.preload = "auto";
+        if (!reduceMotion || !video.muted) video.play().catch(() => {});
+      } else video.pause();
+    }, { threshold: 0.35 }).observe(video);
+    soundBtn.addEventListener("click", () => {
+      video.muted = !video.muted;
+      soundBtn.classList.toggle("is-on", !video.muted);
+      soundBtn.setAttribute("aria-label", video.muted ? "Sesi aç" : "Sesi kapat");
+      video.play().catch(() => {});
+    });
+  }
 
   $("#year").textContent = new Date().getFullYear();
 

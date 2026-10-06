@@ -17,7 +17,11 @@ const CATEGORIES = [
   { id: "mont",     name: "Şişme Mont", desc: "Kapüşonlu kaz tüyü modeller", cover: IMG + "mont-parlak-3renk.jpg" },
   { id: "parka",    name: "Parka",      desc: "Kürk kapüşonlu kışlık",        cover: IMG + "parka-lacivert.jpg" },
   { id: "ceket",    name: "Rüzgarlık",  desc: "Hafif kapüşonlu ceketler",     cover: IMG + "ruzgarlik-3renk.jpg" },
-  { id: "ayakkabi", name: "Sneaker",    desc: "Deri & denim modeller",        cover: IMG + "sneaker-mavi.jpg" }
+  { id: "ayakkabi", name: "Sneaker",    desc: "Deri & denim modeller",        cover: IMG + "sneaker-mavi.jpg" },
+  { id: "triko",    name: "Triko",      desc: "Örgü & yarım fermuarlı",       cover: IMG + "triko-yarim-fermuar-3renk.jpg" },
+  { id: "hoodie",   name: "Hoodie",     desc: "Kapüşonlu & fermuarlı",        cover: IMG + "hoodie-ekose-6renk.jpg" },
+  { id: "esofman",  name: "Eşofman",    desc: "Fermuarlı takımlar",           cover: IMG + "esofman-bej.jpg" },
+  { id: "kombin",   name: "Kombin",     desc: "Pantolon & üst takımlar",      cover: IMG + "kombin-pantolon-sweat.jpg" }
 ];
 
 const PRODUCTS = [
@@ -62,6 +66,40 @@ const PRODUCTS = [
   {
     id: 10, name: "Monogram Sneaker – Siyah/Beyaz", category: "ayakkabi", price: null,
     images: [IMG + "sneaker-siyah.jpg", IMG + "sneaker-mavi-taban.jpg"]
+  },
+  {
+    id: 11, name: "Parlak Kapüşonlu Mont – Mavi Tonları", category: "mont", price: null, badge: "Yeni",
+    colors: ["Lacivert", "Saks", "Açık Mavi"],
+    images: [IMG + "mont-parlak-mavi-3renk.jpg"]
+  },
+  {
+    id: 12, name: "Kapüşonlu Mont – Siyah", category: "mont", price: null,
+    colors: ["Mat", "Parlak"],
+    images: [IMG + "mont-siyah-mat-parlak.jpg", IMG + "mont-parlak-siyah.jpg"]
+  },
+  {
+    id: 13, name: "Yarım Fermuarlı Saç Örgü Triko", category: "triko", price: null, badge: "Çok Satan",
+    colors: ["Lacivert", "Beyaz", "Siyah"],
+    images: [IMG + "triko-yarim-fermuar-3renk.jpg", IMG + "triko-yarim-fermuar-beyaz.jpg"]
+  },
+  {
+    id: 14, name: "Ekose Kapüşonlu Fermuarlı Hoodie", category: "hoodie", price: null, badge: "Yeni",
+    colors: ["Siyah", "Gri", "Lacivert", "Açık Mavi", "Beyaz", "Bej"],
+    images: [IMG + "hoodie-ekose-6renk.jpg"]
+  },
+  {
+    id: 15, name: "Fermuarlı Eşofman Takımı", category: "esofman", price: null,
+    colors: ["Gri", "Beyaz", "Bej"],
+    images: [IMG + "esofman-gri.jpg", IMG + "esofman-beyaz.jpg", IMG + "esofman-bej.jpg"],
+    colorImages: true // renk seçilince aynı sıradaki fotoğraf gösterilir
+  },
+  {
+    id: 16, name: "Sweatshirt & Kumaş Pantolon Kombin", category: "kombin", price: null,
+    images: [IMG + "kombin-pantolon-sweat.jpg"]
+  },
+  {
+    id: 17, name: "Triko Polo & Pantolon Kombin", category: "kombin", price: null, badge: "Yeni",
+    images: [IMG + "kombin-triko-polo.jpg"]
   }
 ];
 

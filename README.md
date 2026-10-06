@@ -18,3 +18,6 @@ All products and categories live in `js/products.js`.
 
 ## Ordering
 The cart works in the browser. "Siparişi Tamamla" (Complete Order) copies an order summary to the clipboard and opens the Instagram profile, so the customer can paste the order into a DM.
+
+## Store video
+`media/magaza.mp4` is the video in the "Hikayemiz" (Our story) section, with `media/magaza.webm` as a fallback for browsers that can't play the MP4. To replace it, keep the same file names, or update the `<video>` sources in `index.html`.

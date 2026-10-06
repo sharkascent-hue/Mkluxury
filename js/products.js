@@ -16,7 +16,7 @@ const IMG = "images/products/";
 const CATEGORIES = [
   { id: "mont",     name: "Şişme Mont", desc: "Kapüşonlu kaz tüyü modeller", cover: IMG + "mont-parlak-3renk.jpg" },
   { id: "parka",    name: "Parka",      desc: "Kürk kapüşonlu kışlık",        cover: IMG + "parka-lacivert.jpg" },
-  { id: "ceket",    name: "Rüzgarlık",  desc: "Hafif kapüşonlu ceketler",     cover: IMG + "ruzgarlik-3renk.jpg" },
+  { id: "ceket",    name: "Ceket",      desc: "Rüzgarlık & triko kollu",      cover: IMG + "ruzgarlik-3renk.jpg" },
   { id: "ayakkabi", name: "Sneaker",    desc: "Deri & denim modeller",        cover: IMG + "sneaker-mavi.jpg" },
   { id: "triko",    name: "Triko",      desc: "Örgü & yarım fermuarlı",       cover: IMG + "triko-yarim-fermuar-3renk.jpg" },
   { id: "hoodie",   name: "Hoodie",     desc: "Kapüşonlu & fermuarlı",        cover: IMG + "hoodie-ekose-6renk.jpg" },
@@ -100,6 +100,23 @@ const PRODUCTS = [
   {
     id: 17, name: "Triko Polo & Pantolon Kombin", category: "kombin", price: null, badge: "Yeni",
     images: [IMG + "kombin-triko-polo.jpg"]
+  },
+  {
+    id: 18, name: "Süet Detaylı Sneaker – Siyah", category: "ayakkabi", price: null, badge: "Yeni",
+    images: [IMG + "sneaker-suet-siyah.jpg"]
+  },
+  {
+    id: 19, name: "Kürk Kapüşonlu Parka – Gri", category: "parka", price: null,
+    images: [IMG + "parka-gri.jpg"]
+  },
+  {
+    id: 20, name: "Triko Kollu Şişme Ceket – Siyah", category: "ceket", price: null, badge: "Yeni",
+    images: [IMG + "ceket-triko-kollu-siyah.jpg"]
+  },
+  {
+    id: 21, name: "Çıkarılabilir Kollu Ekose Kapüşonlu Mont – Siyah", category: "mont", price: null,
+    description: "Kolları çıkarılarak yeleğe dönüşebilen, ekose astarlı kapüşonlu şişme mont. Beden ve stok bilgisi için Instagram üzerinden bize yazabilirsiniz.",
+    images: [IMG + "mont-cikarilabilir-kol-siyah.jpg"]
   }
 ];
 

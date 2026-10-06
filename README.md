@@ -7,8 +7,9 @@ A static shop website for MK Luxury in black, white and gold. It needs no build 
 ## Editing products
 All products and categories live in `js/products.js`.
 
-- Put product photos in `images/products/` and set `image: "images/products/photo.jpg"`.
-- When `image` is empty, the site shows a gold line-art placeholder instead.
+- Put product photos in `images/products/` and add them to the product's `images` list.
+- `images` lists photos: the first is the cover, the second shows on hover, and all of them appear in the product gallery.
+- Leave `price: null` to show "Fiyat için DM" (Price via DM).
 
 ## Publishing (GitHub Pages)
 1. In the repo, go to Settings → Pages.

@@ -25,9 +25,16 @@
     parfum: '<svg viewBox="0 0 100 100"><rect x="26" y="38" width="48" height="54" rx="6"/><rect x="40" y="24" width="20" height="14"/><rect x="36" y="10" width="28" height="14" rx="2"/><path d="M36 60h28M36 68h18"/></svg>',
     taki: '<svg viewBox="0 0 100 100"><path d="M14 14c0 30 16 50 36 50s36-20 36-50"/><path d="M50 64l-9 12 9 14 9-14z"/><circle cx="26" cy="38" r="2"/><circle cx="74" cy="38" r="2"/><circle cx="38" cy="54" r="2"/><circle cx="62" cy="54" r="2"/></svg>'
   };
-  const art = (p, cls = "") => p.image
-    ? `<img src="${p.image}" alt="${p.name}" loading="lazy" class="${cls}">`
-    : (ICONS[p.category] || ICONS.canta);
+  ICONS.mont = ICONS.parka = ICONS.ceket =
+    '<svg viewBox="0 0 100 100"><path d="M38 10h24l6 8 18 10-6 52H20l-6-52 18-10z"/><path d="M50 18v68"/><path d="M20 40h60M18 56h64M16 72h68"/><path d="M38 10c0 8 6 14 12 14s12-6 12-14"/></svg>';
+  const fallbackIcon = p => ICONS[p.category] || ICONS.mont;
+  const art = (p, n = 0) => p.images && p.images[n]
+    ? `<img src="${p.images[n]}" alt="${p.name}" loading="lazy">`
+    : fallbackIcon(p);
+  const hasPrice = p => typeof p.price === "number";
+  const priceHTML = p => hasPrice(p)
+    ? money(p.price) + (p.oldPrice > p.price ? `<s>${money(p.oldPrice)}</s>` : "")
+    : `<span class="card__dm">Fiyat için DM</span>`;
 
   /* =========================================================
      INTRO
@@ -216,10 +223,10 @@
      ========================================================= */
   const catGrid = $("#catGrid");
   catGrid.innerHTML = CATEGORIES.map((c, i) => {
-    const sample = PRODUCTS.find(p => p.category === c.id && p.image);
+    const sample = c.cover || (PRODUCTS.find(p => p.category === c.id && p.images && p.images[0]) || {}).images?.[0];
     return `
-    <a href="#koleksiyon" class="cat reveal" data-cat="${c.id}" style="transition-delay:${(i % 3) * 0.1}s">
-      <div class="cat__art">${sample ? `<img src="${sample.image}" alt="" loading="lazy">` : ICONS[c.id] || ""}</div>
+    <a href="#koleksiyon" class="cat reveal" data-cat="${c.id}" style="transition-delay:${(i % 4) * 0.1}s">
+      <div class="cat__art">${sample ? `<img src="${sample}" alt="" loading="lazy">` : ICONS[c.id] || ""}</div>
       <span class="cat__name">${c.name}</span>
       <span class="cat__desc">${c.desc} <i>→</i></span>
     </a>`;
@@ -260,13 +267,13 @@
         <button class="card__wish${wish.includes(p.id) ? " is-on" : ""}" data-wish="${p.id}" aria-label="Favorilere ekle">
           <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
         </button>
-        <div class="card__art">${art(p)}</div>
+        <div class="card__art${p.images && p.images[1] ? " has-alt" : ""}">${art(p)}${p.images && p.images[1] ? art(p, 1) : ""}</div>
         <button class="btn btn--dark card__add" data-add="${p.id}"><span>Sepete Ekle</span></button>
       </div>
       <div class="card__body">
-        <div class="card__cat">${catName(p.category)}</div>
+        <div class="card__cat">${catName(p.category)}${p.colors ? ` · ${p.colors.length} renk` : ""}</div>
         <h3 class="card__name">${p.name}</h3>
-        <div class="card__price">${money(p.price)}${sale ? `<s>${money(p.oldPrice)}</s>` : ""}</div>
+        <div class="card__price">${priceHTML(p)}</div>
       </div>
     </article>`;
   }
@@ -325,20 +332,23 @@
   /* =========================================================
      CART
      ========================================================= */
-  let cart = store.get("mk-cart", []); // [{id, qty}]
+  let cart = store.get("mk-cart", []).filter(l => l.key); // [{key, id, color, qty}]
   const cartCount = $("#cartCount"), cartItems = $("#cartItems"), cartTotal = $("#cartTotal");
   const drawer = $("#drawer"), overlay = $("#overlay");
 
-  function addToCart(id) {
-    const line = cart.find(l => l.id === id);
-    if (line) line.qty++; else cart.push({ id, qty: 1 });
+  function addToCart(id, color) {
+    const p0 = PRODUCTS.find(x => x.id === id);
+    color = color || (p0.colors ? p0.colors[0] : "");
+    const key = id + (color ? "|" + color : "");
+    const line = cart.find(l => l.key === key);
+    if (line) line.qty++; else cart.push({ key, id, color, qty: 1 });
     saveCart();
     bump(cartCount);
     const p = PRODUCTS.find(x => x.id === id);
     toast(`<b>${p.name}</b> sepete eklendi`);
   }
   function saveCart() {
-    cart = cart.filter(l => l.qty > 0 && PRODUCTS.some(p => p.id === l.id));
+    cart = cart.filter(l => l.key && l.qty > 0 && PRODUCTS.some(p => p.id === l.id));
     store.set("mk-cart", cart);
     renderCart();
   }
@@ -347,7 +357,7 @@
     cartCount.textContent = n;
     cartCount.classList.toggle("has", n > 0);
     if (!cart.length) {
-      cartItems.innerHTML = `<div class="drawer__empty">${ICONS.canta}<p>Sepetiniz şu an boş.</p></div>`;
+      cartItems.innerHTML = `<div class="drawer__empty">${ICONS.mont}<p>Sepetiniz şu an boş.</p></div>`;
     } else {
       cartItems.innerHTML = cart.map(l => {
         const p = PRODUCTS.find(x => x.id === l.id);
@@ -356,26 +366,28 @@
           <div class="line-item__img">${art(p)}</div>
           <div>
             <h4>${p.name}</h4>
-            <div class="price">${money(p.price)}</div>
+            ${l.color ? `<div class="line-item__opt">Renk: ${l.color}</div>` : ""}
+            <div class="price">${priceHTML(p)}</div>
             <div class="qty">
-              <button data-dec="${p.id}" aria-label="Azalt">−</button>
+              <button data-dec="${l.key}" aria-label="Azalt">−</button>
               <span>${l.qty}</span>
-              <button data-inc="${p.id}" aria-label="Arttır">+</button>
+              <button data-inc="${l.key}" aria-label="Arttır">+</button>
             </div>
           </div>
-          <button class="line-item__rm" data-rm="${p.id}">Sil</button>
+          <button class="line-item__rm" data-rm="${l.key}">Sil</button>
         </div>`;
       }).join("");
     }
-    const total = cart.reduce((s, l) => s + l.qty * PRODUCTS.find(p => p.id === l.id).price, 0);
-    cartTotal.textContent = money(total);
+    const priced = cart.every(l => hasPrice(PRODUCTS.find(p => p.id === l.id)));
+    const total = cart.reduce((s, l) => s + l.qty * (PRODUCTS.find(p => p.id === l.id).price || 0), 0);
+    cartTotal.textContent = !cart.length ? money(0) : priced ? money(total) : "DM ile";
   }
   cartItems.addEventListener("click", e => {
     const inc = e.target.closest("[data-inc]"), dec = e.target.closest("[data-dec]"), rm = e.target.closest("[data-rm]");
     const btn = inc || dec || rm;
     if (!btn) return;
-    const id = +(btn.dataset.inc || btn.dataset.dec || btn.dataset.rm);
-    const line = cart.find(l => l.id === id);
+    const key = btn.dataset.inc || btn.dataset.dec || btn.dataset.rm;
+    const line = cart.find(l => l.key === key);
     if (!line) return;
     if (inc) line.qty++;
     if (dec) line.qty--;
@@ -394,7 +406,7 @@
     if (!cart.length) { e.preventDefault(); toast("Sepetiniz boş"); return; }
     const lines = cart.map(l => {
       const p = PRODUCTS.find(x => x.id === l.id);
-      return `• ${p.name} x${l.qty} — ${money(p.price * l.qty)}`;
+      return `• ${p.name}${l.color ? ` (${l.color})` : ""} x${l.qty}${hasPrice(p) ? ` — ${money(p.price * l.qty)}` : ""}`;
     });
     const text = `Merhaba MK Luxury, sipariş vermek istiyorum:\n${lines.join("\n")}\nToplam: ${cartTotal.textContent}`;
     navigator.clipboard?.writeText(text).then(
@@ -407,17 +419,25 @@
      QUICK VIEW MODAL
      ========================================================= */
   const modal = $("#modal"), modalCard = $("#modalCard");
+  let modalProduct = null;
   function openModal(id) {
+    modalProduct = id;
     const p = PRODUCTS.find(x => x.id === id);
-    const sale = p.oldPrice && p.oldPrice > p.price;
+    const imgs = p.images || [];
     modalCard.innerHTML = `
       <button class="modal__close" aria-label="Kapat">&times;</button>
-      <div class="modal__media">${art(p)}</div>
+      <div class="modal__gallery">
+        <div class="modal__media" id="modalMain">${art(p)}</div>
+        ${imgs.length > 1 ? `<div class="modal__thumbs">${imgs.map((src, i) =>
+          `<button class="${i === 0 ? "is-active" : ""}" data-thumb="${i}" aria-label="Fotoğraf ${i + 1}"><img src="${src}" alt=""></button>`).join("")}</div>` : ""}
+      </div>
       <div class="modal__info">
         <div class="card__cat">${catName(p.category)}</div>
         <h3>${p.name}</h3>
-        <div class="card__price">${money(p.price)}${sale ? `<s>${money(p.oldPrice)}</s>` : ""}</div>
-        <p>${p.description || "Özenle seçilmiş, %100 orijinal ürün. Faturalı, garantili ve özel hediye kutusunda ücretsiz kargo ile gönderilir."}</p>
+        <div class="card__price">${priceHTML(p)}</div>
+        <p>${p.description || "Beden, stok ve fiyat bilgisi için Instagram üzerinden bize yazabilir ya da mağazamızı ziyaret edebilirsiniz."}</p>
+        ${p.colors ? `<div class="swatches" role="radiogroup" aria-label="Renk">${p.colors.map((c, i) =>
+          `<button class="swatch${i === 0 ? " is-active" : ""}" data-color="${c}" role="radio" aria-checked="${i === 0}">${c}</button>`).join("")}</div>` : ""}
         <button class="btn btn--gold btn--block" data-modal-add="${p.id}"><span>Sepete Ekle</span></button>
       </div>`;
     modal.classList.add("is-open");
@@ -427,7 +447,21 @@
   modal.addEventListener("click", e => {
     if (e.target === modal || e.target.closest(".modal__close")) closeModal();
     const add = e.target.closest("[data-modal-add]");
-    if (add) { addToCart(+add.dataset.modalAdd); closeModal(); setTimeout(openDrawer, 300); }
+    const thumb = e.target.closest("[data-thumb]");
+    if (thumb) {
+      const p = PRODUCTS.find(x => x.id === modalProduct);
+      const main = $("#modalMain");
+      main.classList.remove("is-swap"); void main.offsetWidth;
+      main.innerHTML = art(p, +thumb.dataset.thumb);
+      main.classList.add("is-swap");
+      $$("[data-thumb]", modalCard).forEach(b => b.classList.toggle("is-active", b === thumb));
+    }
+    const sw = e.target.closest("[data-color]");
+    if (sw) $$("[data-color]", modalCard).forEach(b => { b.classList.toggle("is-active", b === sw); b.setAttribute("aria-checked", b === sw); });
+    if (add) {
+      const color = ($(".swatch.is-active", modalCard) || {}).dataset?.color;
+      addToCart(+add.dataset.modalAdd, color); closeModal(); setTimeout(openDrawer, 300);
+    }
   });
 
   /* =========================================================
@@ -440,7 +474,7 @@
     const list = q ? PRODUCTS.filter(p => norm(p.name + " " + catName(p.category)).includes(q)) : [];
     searchResults.innerHTML = q && !list.length
       ? `<p style="color:var(--muted)">Sonuç bulunamadı.</p>`
-      : list.map(p => `<button data-sr="${p.id}"><span>${p.name}</span><span style="color:var(--gold)">${money(p.price)}</span></button>`).join("");
+      : list.map(p => `<button data-sr="${p.id}"><span>${p.name}</span><span style="color:var(--gold)">${hasPrice(p) ? money(p.price) : catName(p.category)}</span></button>`).join("");
   }
   $("#searchBtn").addEventListener("click", () => { search.classList.add("is-open"); setTimeout(() => searchInput.focus(), 200); });
   $("#searchClose").addEventListener("click", () => search.classList.remove("is-open"));
@@ -475,6 +509,7 @@
      ========================================================= */
   (function slider() {
     const track = $("#sliderTrack"), dotsEl = $("#sliderDots");
+    if (!track) return;
     const slides = $$(".quote", track);
     let i = 0, timer;
     dotsEl.innerHTML = slides.map((_, n) => `<button aria-label="Yorum ${n + 1}"${n === 0 ? ' class="is-active"' : ""}></button>`).join("");
@@ -500,17 +535,16 @@
      INSTAGRAM GRID
      ========================================================= */
   const instaGrid = $("#instaGrid");
-  const instaSrc = PRODUCTS.slice(0, 6);
-  instaGrid.innerHTML = instaSrc.map((p, i) => `
+  instaGrid.innerHTML = INSTAGRAM.map((src, i) => `
     <a class="insta-item reveal" href="https://www.instagram.com/mkluxurytr" target="_blank" rel="noopener" aria-label="Instagram'da gör" style="transition-delay:${i * 0.07}s">
-      ${p.image ? `<img src="${p.image}" alt="" loading="lazy">` : (ICONS[p.category] || "").replace("<svg", '<svg class="art"')}
+      <img src="${src}" alt="" loading="lazy">
     </a>`).join("");
   observeReveal($$(".insta-item", instaGrid));
 
   /* =========================================================
      NEWSLETTER, TOAST, MISC
      ========================================================= */
-  $("#newsletterForm").addEventListener("submit", e => {
+  $("#newsletterForm")?.addEventListener("submit", e => {
     e.preventDefault();
     e.target.reset();
     toast("Teşekkürler! <b>Ayrıcalıklı listeye</b> katıldınız.");

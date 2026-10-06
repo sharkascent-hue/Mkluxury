@@ -2,29 +2,68 @@
  * MK Luxury — ürün kataloğu
  *
  * Ürün eklemek / değiştirmek için sadece bu dosyayı düzenleyin.
- * - image: "images/products/dosya.jpg" gibi bir yol verin. Boş bırakılırsa
- *   şık bir altın çizim (placeholder) gösterilir.
+ * - images: fotoğraf yolları; ilki kapak, ikincisi kartın üzerine gelince görünür,
+ *   hepsi ürün detayında galeri olarak gösterilir.
  * - category: CATEGORIES içindeki "id" değerlerinden biri olmalı.
+ * - price: TL fiyatı. Boş bırakılırsa (null) "Fiyat için DM" yazar.
  * - oldPrice: indirim varsa eski fiyat (opsiyonel).
+ * - colors: renk seçenekleri (opsiyonel).
  * - badge: "Yeni", "Çok Satan", "İndirim" vb. (opsiyonel).
  */
 
+const IMG = "images/products/";
+
 const CATEGORIES = [
-  { id: "canta",    name: "Çanta",    desc: "El & omuz çantaları" },
-  { id: "saat",     name: "Saat",     desc: "Klasik & spor modeller" },
-  { id: "ayakkabi", name: "Ayakkabı", desc: "Sneaker & topuklu" },
-  { id: "gozluk",   name: "Gözlük",   desc: "Güneş gözlükleri" },
-  { id: "parfum",   name: "Parfüm",   desc: "İmza kokular" },
-  { id: "taki",     name: "Takı",     desc: "Kolye, bileklik, yüzük" }
+  { id: "mont",     name: "Şişme Mont", desc: "Kapüşonlu kaz tüyü modeller", cover: IMG + "mont-parlak-3renk.jpg" },
+  { id: "parka",    name: "Parka",      desc: "Kürk kapüşonlu kışlık",        cover: IMG + "parka-lacivert.jpg" },
+  { id: "ceket",    name: "Rüzgarlık",  desc: "Hafif kapüşonlu ceketler",     cover: IMG + "ruzgarlik-3renk.jpg" },
+  { id: "ayakkabi", name: "Sneaker",    desc: "Deri & denim modeller",        cover: IMG + "sneaker-mavi.jpg" }
 ];
 
 const PRODUCTS = [
-  { id: 1,  name: "Monogram Deri Omuz Çantası", category: "canta",    price: 8950,  oldPrice: 10900, badge: "Çok Satan", image: "" },
-  { id: 2,  name: "Altın Kadranlı Klasik Saat", category: "saat",     price: 12450, badge: "Yeni", image: "" },
-  { id: 3,  name: "Siyah Deri Sneaker",         category: "ayakkabi", price: 5650,  image: "" },
-  { id: 4,  name: "Oval Altın Çerçeve Gözlük",  category: "gozluk",   price: 3250,  oldPrice: 3900, badge: "İndirim", image: "" },
-  { id: 5,  name: "Oud Noir Eau de Parfum",     category: "parfum",   price: 4100,  badge: "Yeni", image: "" },
-  { id: 6,  name: "Zincir Detaylı Kolye",       category: "taki",     price: 2850,  image: "" },
-  { id: 7,  name: "Mini Kapitone Çanta",        category: "canta",    price: 7300,  badge: "Yeni", image: "" },
-  { id: 8,  name: "Çelik Kronograf Saat",       category: "saat",     price: 15900, oldPrice: 17500, badge: "İndirim", image: "" }
+  {
+    id: 1, name: "Parlak Kapitone Mont", category: "mont", price: null, badge: "Yeni",
+    colors: ["Gri", "Yeşil", "Beyaz"],
+    images: [IMG + "mont-parlak-3renk.jpg", IMG + "mont-kol-detay.jpg"]
+  },
+  {
+    id: 2, name: "Parlak Kapüşonlu Mont – Siyah", category: "mont", price: null, badge: "Çok Satan",
+    images: [IMG + "mont-parlak-siyah.jpg", IMG + "mont-4renk-magaza.jpg"]
+  },
+  {
+    id: 3, name: "Mat Kapüşonlu Mont – Lacivert", category: "mont", price: null,
+    images: [IMG + "mont-mat-lacivert.jpg", IMG + "mont-4renk-magaza.jpg"]
+  },
+  {
+    id: 4, name: "Mat Kapüşonlu Mont – Gri", category: "mont", price: null,
+    images: [IMG + "mont-gri.jpg", IMG + "mont-4renk-magaza.jpg"]
+  },
+  {
+    id: 5, name: "Ekose Astarlı Mont – Saks Mavi", category: "mont", price: null, badge: "Yeni",
+    images: [IMG + "mont-ekose-saks.jpg", IMG + "mont-ekose-krem.jpg"]
+  },
+  {
+    id: 6, name: "Ekose Astarlı Mont – Krem", category: "mont", price: null,
+    images: [IMG + "mont-ekose-krem.jpg", IMG + "mont-ekose-saks.jpg"]
+  },
+  {
+    id: 7, name: "Kürk Kapüşonlu Parka – Lacivert", category: "parka", price: null, badge: "Yeni",
+    images: [IMG + "parka-lacivert.jpg", IMG + "parka-detay-1.jpg", IMG + "parka-detay-2.jpg"]
+  },
+  {
+    id: 8, name: "Kapüşonlu Rüzgarlık", category: "ceket", price: null,
+    colors: ["Bej", "Lacivert", "Siyah"],
+    images: [IMG + "ruzgarlik-3renk.jpg"]
+  },
+  {
+    id: 9, name: "Monogram Denim Sneaker – Mavi", category: "ayakkabi", price: null, badge: "Çok Satan",
+    images: [IMG + "sneaker-mavi.jpg", IMG + "sneaker-mavi-taban.jpg"]
+  },
+  {
+    id: 10, name: "Monogram Sneaker – Siyah/Beyaz", category: "ayakkabi", price: null,
+    images: [IMG + "sneaker-siyah.jpg", IMG + "sneaker-mavi-taban.jpg"]
+  }
 ];
+
+/* Instagram bölümünde gösterilen kareler */
+const INSTAGRAM = [1, 2, 3, 4, 5, 6].map(n => IMG + `insta-${n}.jpg`);
